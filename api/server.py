@@ -1,3 +1,5 @@
+import random
+
 import flask
 from flask import jsonify
 import datetime
@@ -5,7 +7,31 @@ import datetime
 app = flask.Flask(__name__)
 app.config["DEBUG"]=True
 
-residents=[]
+residents=[
+    {
+        "age": 20,
+        "date_arrivee": "2025-10-12",
+        "id": 1,
+        "prenom": "Julien"
+    },
+    {
+        "age": 130,
+        "date_arrivee": "2025-10-12",
+        "id": 2,
+        "prenom": "Dorian"
+    },
+    {
+        "age": 8,
+        "date_arrivee": "2025-10-12",
+        "id": 3,
+        "prenom": "Rayanne"
+    },
+    {
+        "age": 25,
+        "date_arrivee": "1354-10-12",
+        "id": 5,
+        "prenom": "Theo"
+    }]
 cadeaux=[{"id":1,"nom":"peluche","age_min":0, "age_max":7},
     {"id":2,"nom":"jouet","age_min":8, "age_max":14},
     {"id":3,"nom":"carte cadeaux steam","age_min":15, "age_max":20},
@@ -73,7 +99,7 @@ def get_eligible():
 def post_attributions():
     for resident in eligible:
         if not resident["resident"] in attributions["resident"]:
-            attributions.append({"resident": resident["resident"], "cadeau_associe": resident["cadeau_associe"], "date_attribution": datetime.datetime.now().strftime("%Y-%m-%d")})
+            attributions.append({"resident": resident["resident"], "cadeau_associe": random.choice(resident["cadeau_associe"]), "date_attribution": datetime.datetime.now().strftime("%Y-%m-%d")})
     return flask.jsonify(attributions)
 
 
