@@ -39,7 +39,6 @@ cadeaux=[{"id":1,"nom":"peluche","age_min":0, "age_max":7},
     {"id":4,"nom":"carte cadeaux restaurant","age_min":21, "age_max":30 },
     {"id":5,"nom":"poele","age_min":31, "age_max":99},
     {"id":6,"nom":"t'es trop vieux","age_min":100, "age_max":10000}]
-eligible=[]
 attributions=[]
 
 @app.route('/',methods=['GET'])
@@ -86,6 +85,7 @@ def delete_resident(id):
 
 @app.route('/api/v1/eligible', methods=['GET'])
 def get_eligible():
+    eligible = []
     for resident in residents:
         if (datetime.datetime.now() - datetime.timedelta(days=365)).strftime("%Y-%m-%d")<=resident["date_arrivee"]:
             cadeaux_res=[]
@@ -97,10 +97,13 @@ def get_eligible():
 
 @app.route('/api/v1/attributions', methods=['POST'])
 def post_attributions():
+    eligible=flask.json.loads(get_eligible().data.decode("utf8"))
+    nouvelles_attributions=[]
     for resident in eligible:
-        if not resident["resident"] in attributions["resident"]:
+        if resident["resident"] not in [a["resident"] for a in attributions if attributions]:
             attributions.append({"resident": resident["resident"], "cadeau_associe": random.choice(resident["cadeau_associe"]), "date_attribution": datetime.datetime.now().strftime("%Y-%m-%d")})
-    return flask.jsonify(attributions)
+            nouvelles_attributions.append({"resident": resident["resident"], "cadeau_associe": random.choice(resident["cadeau_associe"]), "date_attribution": datetime.datetime.now().strftime("%Y-%m-%d")})
+    return flask.jsonify(nouvelles_attributions)
 
 
 
