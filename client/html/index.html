@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ville de Lannion – Gestion des cadeaux 🎁</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<canvas id="backgroundCanvas"></canvas>
+
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+    <img src="/assets/bordeauxBlason.png" alt="Blason de Bordeaux" class="logo">
+
+
+      <div class="header-text">
+        <h1>Ville de Bordeaux</h1>
+        <p class="subtitle">Système d'information municipal — Gestion des cadeaux aux nouveaux habitants 🎁</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="date"></span>
+    </div>
+  </div>
+</header>
+
+
+  <!-- ⚙️ Actions principales -->
+  <section class="actions">
+    <button id="loadEligible">👀 Voir les habitants éligibles</button>
+    <button id="doAttribution">🎁 Lancer les attributions</button>
+    <button id="resetAttributions">♻️ Réinitialiser les attributions</button>
+  </section>
+
+  <!-- 👥 Tableau des éligibles -->
+  <section id="eligibleSection" class="hidden">
+    <h2>Habitants éligibles et cadeaux</h2>
+    <table id="eligibleTable">
+      <thead>
+        <tr>
+          <th>Prénom</th>
+          <th>Âge</th>
+          <th>Date d’arrivée</th>
+          <th>Cadeaux possibles</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- ➕ Ajouter un habitant -->
+  <section>
+    <h2>Ajouter un habitant</h2>
+    <form id="addResidentForm">
+      <input type="number" id="id" placeholder="ID" required>
+      <input type="text" id="prenom" placeholder="Prénom" required>
+      <input type="number" id="age" placeholder="Âge" required>
+      <input type="date" id="date_arrivee" required>
+      <button type="submit">Ajouter</button>
+    </form>
+  </section>
+
+  <!-- 💌 Emails simulés -->
+    <section id="emailsSection">
+      <h2>💌 Mails simulés</h2>
+      <div id="emails">
+        <p class="placeholder">Aucun mail n’a encore été envoyé aujourd’hui.</p>
+      </div>
+    </section>
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <h3>Ville de Bordeaux</h3>
+      <p>Direction du Numérique — Système d’Information Municipal</p>
+    </div>
+
+    <div class="footer-center">
+      <p>© 2025 Ville de Bordeaux — Tous droits réservés</p>
+      <p class="mention">
+        Données simulées à usage pédagogique. Application développée à des fins d’apprentissage.
+      </p>
+    </div>
+
+    <div class="footer-right">
+      <a href="mailto:contact@bordeaux.fr" class="footer-link">📧 contact@bordeaux.fr</a>
+      <a href="https://www.bordeaux.fr" target="_blank" class="footer-link">🌐 www.bordeaux.fr</a>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="/js/script.js"></script>
+
+</body>
+</html>
